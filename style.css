@@ -1,0 +1,46 @@
+.page__homeworks {
+}
+.homeworks {
+}
+.homeworks__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: flex-start;
+  padding: 20px;
+  
+}
+.image{
+  max-width: 400px;
+  object-fit: contain;
+}
+.homeworks__title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 500;
+  color: rgb(96, 93, 93);
+}
+.homeworks__title:not(:last-child) {
+  margin-bottom: 40px;
+}
+.homeworks__body {
+}
+.homeworks__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.homeworks__item {
+}
+.homeworks__link {
+  color: rgb(96, 93, 93);
+  font-size: 24px;
+  transition: all 0.4s ease-in-out 0s;
+}
+.homeworks__link:hover {
+  font-size: 28px;
+    color: rgb(116, 107, 107);
+
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./tasks.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./tasks_script.js" defer></script>
+    <title>Solution 02</title>
+</head>
+<body>
+    <div id="app2">
+        <div class="container">
+            <div class="form">
+                <label class="label">
+                    Month Number:
+                    <input type="number" class="input" v-model="month">
+                </label>
+            </div>
+            <div class="recomended">Recommended Clothes: <span>{{getSomeClothes}}</span></div>
+            <img :src="imgSource" :width = "imgWidth" alt="season-image">
+        </div>
+    </div>
+</body>
+</html>

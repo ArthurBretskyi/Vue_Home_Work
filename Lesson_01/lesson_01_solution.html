@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./lesson_01_solution.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./lesson_01.script.js" defer></script>
+    <title>Lesson_01</title>
+</head>
+
+<body>
+    <div id="myApp">
+        <div class="container">
+            <div class="task">Знаходження суми та добутку за введеними числами</div>
+            <div>
+                <label>
+                    First Number:
+                    <input type="number" placeholder="Enter the Number" v-model="num1">
+                </label>
+            </div>
+            <div>
+                <label>
+                    Second Number:
+                    <input type="number" placeholder="Enter the Number" v-model="num2">
+                </label>
+            </div>
+            <div>Sum:
+                <span>{{num1+num2}}</span>
+            </div>
+            <div>Product:
+                <span>{{num1*num2}}</span>
+            </div>
+            <button class="button" @click="onClear">Clear</button>
+            <img class="img" :src="image" :width="logoWidth" alt="vue-logo">
+            <a :[attr_name]="link" target="_blank">Vue</a>
+            
+        </div>
+    </div>
+
+    <hr>
+
+<div id="app2">
+   <div class="container">
+    <div class="task">Розробити конвертор валют. Вводиться курс долара, та кількість гривень. Вивести кількість
+        доларів</div>
+    <div>
+        <label>
+            Dollar Rate:
+            <input type="number" v-model="dollarRate">
+        </label>
+    </div>
+    <div>
+        <label>
+            GRN Amount:
+            <input type="number" v-model="grnAmount" @focus = "onFocus">
+        </label>
+    </div>
+    <div>
+        <label>
+            Dollar Amount:
+            <input type="number" :value="dollarAmount" >
+        </label>
+    </div>
+   </div>
+</div>
+
+<hr>
+</body>
+
+</html>

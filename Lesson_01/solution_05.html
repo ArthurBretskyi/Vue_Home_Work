@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./tasks.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./tasks_script.js" defer></script>
+    <title>Solution 05</title>
+</head>
+
+<body>
+    <div id="app5">
+        <div class="container">
+            <div class="login-container">
+                <label>Login:
+                    <input type="text" placeholder="Enter Username" v-model="login">
+                </label>
+            </div>
+            <div class="password-container">
+                <label>Password:
+                    <input type="password" placeholder="Enter Password" v-model="password">
+                </label>
+            </div>
+            <div class="error"><span>{{error}}</span></div>
+            <div class="greeting"><span>{{greeting}}</span></div>
+            <button class="button" @click="onClick">Go</button>
+
+        </div>
+    </div>
+</body>
+
+</html>

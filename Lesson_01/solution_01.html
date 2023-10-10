@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./tasks.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./tasks_script.js" defer></script>
+    <title>Solution_01</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="form">
+                <label class="label">
+                    Passengers Amount:
+                    <input type="number" class="input" v-model="passengersAmount">
+                </label>
+            </div>
+            <div class="buses-amount">Buses Amount: <span>{{getBusesAmount}}</span></div>
+            <div class="water-amount">Water Bottles Amount: <span>{{getBottlesAmount}}</span></div>
+            <div class="sandwiches-amount">Sandwiches Amount: <span>{{getSandwichesAmount}}</span></div>
+        </div>
+    </div>
+</body>
+
+</html>
