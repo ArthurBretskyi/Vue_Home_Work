@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../solutions.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Lesson_02_Solution</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <label>Place Number:
+                <input type="number" :class="difinitionPlaceColor" v-model="placeNumber">
+            </label>
+        </div>
+    </div>
+    <hr>
+    <style>
+        .first-place {
+            color: green;
+            font-size: 18px;
+        }
+
+        .second-place {
+            color: yellow;
+            font-size: 14px;
+        }
+
+        .third-place {
+            color: orange;
+            font-size: 12px;
+        }
+
+        .other {
+            color: blue;
+            font-size: 10px;
+        }
+    </style>
+    <script>
+        const { createApp } = Vue;
+        const app = createApp({
+            data() {
+                return {
+                    placeNumber: null,
+                }
+            },
+            computed: {
+                difinitionPlaceColor() {
+                    let resultPlace
+                    switch (this.placeNumber) {
+                        case 1: resultPlace = "first-place"
+                            break;
+                        case 2: resultPlace = "second-place"
+                            break;
+                        case 3: resultPlace = "third-place"
+                            break;
+                        default:
+                            resultPlace = "other"
+                            break;
+                    }
+                    return resultPlace
+                }
+            }
+        }).mount("#app")
+    </script>
+    <!-- ========================================================================================== -->
+    <div id="app2">
+        <div class="container">
+            <label><span :class="[colorStatus, energyStatus]">Energy Level:</span>
+                <input type="number" v-model="energyLevel">
+            </label>
+        </div>
+    </div>
+    <hr>
+    <style>
+        .high-energy-level {
+            background-color: green;
+        }
+
+        .middle-energy-level {
+            background-color: yellow;
+        }
+
+        .low-energy-level {
+            background-color: red;
+        }
+
+        .succses::before {
+            content: url("./img/green-check-mark-correct-tick-16237.png");
+        }
+
+        .warning::before {
+            content: url("./img/icons8-warning-48.png");
+            width: 10px;
+        }
+    </style>
+    <script>
+        const { createApp2 } = Vue;
+        const app2 = createApp({
+            data() {
+                return {
+                    energyLevel: null,
+                }
+            },
+            computed: {
+                colorStatus() {
+                    let currentEnergyLevel = null
+                    if (this.energyLevel) {
+                        if (this.energyLevel > 80) currentEnergyLevel = "high-energy-level"
+                        else if (this.energyLevel > 30) currentEnergyLevel = "middle-energy-level"
+                        else currentEnergyLevel = "low-energy-level"
+                    }
+                    return currentEnergyLevel
+                },
+                energyStatus() {
+                    let iconClass = null
+                    if (this.energyLevel) {
+                        iconClass = this.energyLevel >= 50 ? "succses" : "warning"
+                    }
+                    return iconClass
+                },
+            }
+        }).mount("#app2")
+    </script>
+    <!-- ========================================================================================== -->
+    <div id="app3">
+        <div class="container">
+            <label> Worker Age:
+                <input type="number" v-model="workerAge">
+            </label>
+            <button :class="{[buttonStatusColor] : isWorkerAgeValid,}" :disabled="!isWorkerAgeValid">LogIn</button>
+        </div>
+    </div>
+    <hr>
+    <style>
+        .less45age {
+            background-color: green;
+        }
+
+        .greater45age {
+            background-color: blue;
+        }
+    </style>
+    <script>
+        const { createApp3 } = Vue
+        createApp({
+            data() {
+                return {
+                    workerAge: null,
+                }
+            },
+            computed: {
+                isWorkerAgeValid() {
+                    return this.workerAge && this.workerAge >= 18
+                },
+                buttonStatusColor() {
+                    return this.workerAge < 45 ? "less45age" : "greater45age"
+                }
+            }
+        }).mount("#app3")
+    </script>
+    <!-- ========================================================================================== -->
+    <div id="app4">
+        <div class="container">
+            <label> Product Price:
+                <input type="number" v-model="priceValue">
+            </label>
+            <label> User Money:
+                <input type="number" v-model="userMoneyValue">
+            </label>
+            <button :class="[backgroundClases, {'prod-greater-1000':isElite, 'prod-greater-10000':isSuperElite, [titleClases]:isInputFilled}]">Pay</button>
+        </div>
+    </div>
+    <hr>
+    <style>
+        .empty {
+            background-color: grey;
+        }
+
+        .not-enough-money {
+            background-color: red;
+        }
+
+        .enough-money {
+            background-color: green;
+        }
+
+        .prod-greater-1000 {
+            border: 2px solid yellow;
+        }
+
+        .prod-greater-10000 {
+            box-shadow: -2px -2px 10px 10px blue;
+        }
+
+        .equal {
+            color: rgb(128, 0, 79);
+        }
+
+        .diferent {
+            color: orange;
+        }
+    </style>
+    <script>
+        const { createApp4 } = Vue
+        createApp({
+            data() {
+                return {
+                    priceValue: null,
+                    userMoneyValue: null,
+                }
+            },
+            computed: {
+                isInputFilled() {
+                    return this.priceValue && this.userMoneyValue
+                },
+                backgroundClases() {
+                    let definition = null
+                    if (!this.isInputFilled) definition = 'empty'
+                    else if (this.userMoneyValue < this.priceValue) definition = "not-enough-money"
+                    else definition = "enough-money"
+                    return definition
+                },
+                titleClases() {
+                    return this.priceValue === this.userMoneyValue ? "equal" : "diferent"
+                },
+                isElite() {
+                    return this.isInputFilled && this.priceValue > 1000
+                },
+                isSuperElite() {
+                    return this.isInputFilled && this.priceValue > 10000
+                },
+            }
+        }).mount("#app4")
+    </script>
+</body>
+
+</html>

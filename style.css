@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 15px;
 }
 .homeworks__item {
 }
@@ -39,6 +39,7 @@
   font-size: 24px;
   transition: all 0.4s ease-in-out 0s;
 }
+
 .homeworks__link:hover {
   font-size: 28px;
     color: rgb(116, 107, 107);

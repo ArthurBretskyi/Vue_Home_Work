@@ -179,10 +179,10 @@ createApp({
   },
   computed: {
     dollarSum() {
-      return (this.startSum * this.dollarCourse).toFixed(2);
+      return (this.startSum / this.dollarCourse).toFixed(2);
     },
     euroSum() {
-      return (this.startSum * this.euroCourse).toFixed(2);
+      return (this.startSum / this.euroCourse).toFixed(2);
     },
     percent() {
       this.percentAmount = ((this.startSum / 100) * 3).toFixed(2);
