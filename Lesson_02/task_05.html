@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../solutions.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Task 05</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="block" v-for="(link, id) in linksList" :key="id">
+                <a :href="link.https" class="link" target="_blank">
+                    <div class="head">
+                        <img :src="link.logoSrc" alt="logo" class="logo">
+                        <div>
+                            <h4 class="sub-title">{{link.subTitle}}</h4>
+                            <p class="https">{{link.https}}</p>
+                        </div>
+                    </div>
+                    <h1 class="title">{{link.title}}</h1>
+                </a>
+                <div class="description">{{link.description}}</div>
+            </div>
+
+        </div>
+    </div>
+    <style>
+        .container {
+            display: flex;
+            align-items: start;
+        }
+
+        .block {
+            padding-bottom: 10px;
+            border-bottom: 1px solid black;
+        }
+
+        .link {
+            text-decoration: none;
+        }
+
+        .head {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 10px;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            border-radius: 50%;
+        }
+
+        .https::after {
+            content: "             ⋮";
+        }
+    </style>
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data() {
+                return {
+                    linksList: [
+                        {
+                            id: 1,
+                            logoSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrVu45m7Uum1wrsO629PxXbLrvmZnTk4bQY8G8764&s",
+                            subTitle: "Vue.js",
+                            https: "https://vuejs.org/",
+                            title: "Vue.js - The Progressive JavaScript Framework | Vue.js",
+                            description: "Approachable. Builds on top of standard HTML, CSS and JavaScript with intuitive API and world-class documentation. · Performant. Truly reactive, compiler- ...",
+                        },
+                        {
+                            id: 2,
+                            logoSrc: "data:image/png;base64,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",
+                            subTitle: "Сучасний підручник з JavaScript",
+                            https: "https://uk.javascript.info/",
+                            title: "Сучасний підручник з JavaScript",
+                            description: "Підручник із сучасного JavaScript: прості, але докладні пояснення з прикладами та завданнями, включаючи: замикання, DOM та події, об'єктно-орієнтоване ...",
+                        },
+
+                    ]
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

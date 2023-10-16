@@ -172,7 +172,8 @@
             <label> User Money:
                 <input type="number" v-model="userMoneyValue">
             </label>
-            <button :class="[backgroundClases, {'prod-greater-1000':isElite, 'prod-greater-10000':isSuperElite, [titleClases]:isInputFilled}]">Pay</button>
+            <button
+                :class="[backgroundClases, {'prod-greater-1000':isElite, 'prod-greater-10000':isSuperElite, [titleClases]:isInputFilled}]">Pay</button>
         </div>
     </div>
     <hr>
@@ -236,6 +237,97 @@
                 },
             }
         }).mount("#app4")
+    </script>
+    <!-- ========================================================================================== -->
+    <div id="app5">
+        <div class="container">
+            <div v-for="(book, id) in booksList" :key="id">
+                <h2>{{book.title}}</h2>
+                <p>{{book.author}}</p>
+                <img :src="book.imgSrc" alt="book image" width="200">
+                <p>Price: {{book.price}} грн</p>
+                <hr>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        const { createApp5 } = Vue
+        const books = [
+            {
+                id: 1,
+                title: "It",
+                author: "Stephen King",
+                imgSrc: "https://balka-book.com/files/2017/09_27/13_08/u_files_store_3_426540.jpg",
+                price: 650,
+            },
+            {
+                id: 2,
+                title: "The Lord of the Rings",
+                author: "J. R. R. Tolkien",
+                imgSrc: "https://www.britishbook.ua/upload/resize_cache/iblock/336/vcc9n87wof7fig06t1dgroqt6v3j4tcf/1900_800_174b5ed2089e1946312e2a80dcd26f146/kniga_the_lord_of_the_rings.jpeg",
+                price: 888,
+            },
+            {
+                id: 3,
+                title: "Fire and Blood",
+                author: "George R. R. Martin",
+                imgSrc: "https://www.britishbook.ua/upload/resize_cache/iblock/728/qzcx8f2jld56y3m1o4jjxin26wsqq3jq/292_448_174b5ed2089e1946312e2a80dcd26f146/kniga_fire_and_blood.jpg",
+                price: 283,
+            },
+        ]
+        createApp({
+            data() {
+                return {
+
+                }
+            },
+            computed: {
+                booksList() {
+                    return books
+                }
+            }
+        }).mount("#app5")
+    </script>
+    <!-- ========================================================================================== -->
+    <div id="app6">
+        <div class="container">
+            <form action="#">
+                <label>Product Name: <input type="text" v-model="productTitle"></label>
+                <label>Product Amount: <input type="number" v-model="productAmount"></label>
+                <button class="button" type="button" @click="onProductAdd">Add</button>
+            </form>
+            <hr>
+            <div> Product List: 
+                <ol>
+                    <li v-for="(product, index) in productList" :key="index">
+                        {{product.title}} - {{product.amount}}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <script>
+        const { createApp6 } = Vue
+        createApp({
+            data() {
+                return {
+                    productTitle: null,
+                    productAmount: null,
+                    productList: [],
+                }
+            },
+            methods: {
+                onProductAdd() {
+                    this.productList.push({
+                        title: this.productTitle,
+                        amount: this.productAmount,
+                    })
+                    this.productTitle = null
+                    this.productAmount = null
+                }
+            },
+        }).mount("#app6")
     </script>
 </body>
 

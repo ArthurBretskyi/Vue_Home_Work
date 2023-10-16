@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../solutions.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Task 06</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div>
+                <label for="">Нова замовленна страва:
+                    <input type="text" v-model="dishTitle">
+                </label>
+                <button class="button" type="button" @click="addToWaitingList">Додати</button>
+            </div>
+            <div class="first-block">Очікують на виконання
+                <ul>
+                    <li v-for="(dish, index) in waitingList" :key="index">{{dishTitle}}<button class="button"
+                            type="button" @click="addToDoneList">Готувати</button></li>
+                </ul>
+            </div>
+            <div class="second-block">Виконуються
+                <ul>
+                    <li v-for="(dish, index) in doneList">{{dishTitle}}<button @click="addToServedList" class="button"
+                            type="button">Приготовленно</button></li>
+                </ul>
+            </div>
+            <div class="third-block">Готові до виносу
+                <ul>
+                    <li v-for="(dish, index) in servedList">{{dishTitle}}<button class="button"
+                            type="button" @click="onClear">Подано</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <style>
+       
+    </style>
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data() {
+                return {
+                    dishTitle: null,
+                    waitingList: [],
+                    doneList: [],
+                    servedList: []
+                }
+            },
+            methods: {
+                addToWaitingList() {
+                    this.waitingList.push(this.dishTitle)
+                },
+                addToDoneList() {
+                    this.doneList.push(this.dishTitle)
+                    this.waitingList = []
+                },
+                addToServedList() {
+                    this.servedList.push(this.dishTitle)
+                     this.doneList =[]
+                },
+                onClear(){
+                   this.servedList = []
+                   this.dishTitle = null
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

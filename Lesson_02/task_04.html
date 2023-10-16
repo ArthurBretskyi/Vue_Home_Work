@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../solutions.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Task 04</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <ul class="worker">
+                <li v-for="(worker, id) in workersList2" :key="id">{{worker.name}} : {{worker.salary}}</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data() {
+                return {
+                    workersList2: [
+                        {
+                            id: '111',
+                            name: 'Іванов',
+                            salary: 10000,
+                        },
+                        {
+                            id: '112',
+                            name: 'Петров',
+                            salary: 20000,
+                        },
+                        {
+                            id: '113',
+                            name: 'Сидоров',
+                            salary: 50000,
+                        },
+                    ],
+
+                }
+
+            },
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

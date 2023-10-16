@@ -14,22 +14,19 @@
 <body>
     <div id="app4">
         <div class="container">
-            <div  class="acount">Сума на рахунку: <span>{{startSum - percent}}</span></div>
-            <div class="add">
-                <label>Зарахувати на рахунок:
-                    <input type="number" v-model="grnAdd">
-                </label>
-                <button class="button" @click="add">Зарахувати</button>
+            <div v-model="balance">Сума на рахунку: {{balanceRender}}</div>
+            <div>
+                <label>Зарахувати на рахунок <input type="number" v-model="addMoney" @focus="onFocus"></label>
+                <button type="button" @click="onAddMoney">Add</button>
             </div>
-            <div class="withdraw">
-                <label>Зняти з рахунку:
-                    <input  type="number" v-model="grnWithdraw">
-                </label>
-                <button class="button" @click="withdraw">Зняти</button>
+            <div>
+                <label>Зняти з рахунку <input type="number" v-model="withdrawMoney" @focus="onFocus"></label>
+                <button type="button" @click="onWithdrawMoney">Withdraw</button>
             </div>
-            <div class="percent">Відсотки за обслeговування: <span>{{percent}}</span></div>
-            <div class="dollar">Сума у доларах: <span>{{dollarSum}}</span></div>
-            <div class="grn">Сума у євро: <span>{{euroSum}}</span></div>
+            <div v-model="showTax">Відсоток за обслуговування: {{taxRender}}</div>
+            <div >Сума у доларах:{{dollarRateValue}} </div>
+            <div>Сума у Євро: {{euroRateValue}}</div>
+            <div>{{message}}</div>
 
         </div>
     </div>

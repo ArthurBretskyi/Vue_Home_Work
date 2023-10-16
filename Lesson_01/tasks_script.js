@@ -151,42 +151,54 @@ createApp({
 }).mount("#app5");
 
 //============================================================================
-
+const TAX_PERCENTAGE = 3;
+const DOLLAR_RATE = 36;
+const EURO_RATE = 38;
 createApp({
   data() {
     return {
-      startSum: 0,
-      grnAdd: null,
-      grnWithdraw: null,
-      dollarCourse: 36,
-      euroCourse: 38,
-      percentAmount: null,
-     textolor: null,
+      balance: 0,
+      addMoney: null,
+      withdrawMoney: null,
+      message: "",
     };
   },
-  methods: {
-    add() {
-      if (this.grnAdd < 0)
-        throw new Error("Сума попвонення має бути більшою за нуль");
-      this.startSum += this.grnAdd - this.percentAmount;
-      this.textolor = "green"
+  computed: {
+    balanceRender() {
+      return this.balance.toFixed(2)
     },
-    withdraw() {
-      if (this.startSum < this.grnWithdraw)
-        throw new Error("Не вистачає грошей(");
-      this.startSum -= this.grnWithdraw;
+    taxDefinition() {
+      let sum = (this.addMoney ?? 0) + (this.withdrawMoney ?? 0);
+      return (sum * TAX_PERCENTAGE) / 100;
+    },
+    taxRender() {
+      return this.taxDefinition.toFixed(2);
+    },
+    dollarRateValue() {
+      return (this.balance / DOLLAR_RATE).toFixed(2);
+    },
+    euroRateValue() {
+      return (this.balance / EURO_RATE).toFixed(2);
     },
   },
-  computed: {
-    dollarSum() {
-      return (this.startSum / this.dollarCourse).toFixed(2);
+  methods: {
+    onAddMoney() {
+      (this.balance += this.addMoney - this.taxDefinition);
+      this.addMoney = null;
+      return
     },
-    euroSum() {
-      return (this.startSum / this.euroCourse).toFixed(2);
+    onWithdrawMoney() {
+      let sumSubtract = this.withdrawMoney + this.taxDefinition;
+      if (this.balance < sumSubtract) {
+        this.message = "Не достатньо коштів";
+        return;
+      }
+
+      this.balance -= sumSubtract;
+      this.withdrawMoney = null;
     },
-    percent() {
-      this.percentAmount = ((this.startSum / 100) * 3).toFixed(2);
-      return this.percentAmount
+    onFocus() {
+      this.message = null
     },
   },
 }).mount("#app4");

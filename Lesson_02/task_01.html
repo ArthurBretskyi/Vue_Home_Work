@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../solutions.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Task_01</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div>
+                <label>Login <input type="text" v-model="loginInput" @focus="onFocus"></label>
+            </div>
+            <div>
+                <label>Password <input type="password" v-model="passwordInput" @focus="onFocus"></label>
+            </div>
+            <button class="button" type="button" @click="onRegistration">Go</button>
+            <img :src="imgSrc">
+            <div :class="colorStatus">{{message}}</div>
+        </div>
+    </div>
+    <style>
+        .success {
+            color: green;
+        }
+
+        .error-ivan-message {
+            color: blue;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+    <script>
+        const { createApp } = Vue
+        const CORRECT_LOGIN = "Ivan"
+        const INCORRECT_LOGIN = "Іван"
+        const CORRECT_PASS = "111"
+
+        createApp({
+            data() {
+                return {
+                    loginInput: null,
+                    passwordInput: null,
+                    colorStatus: null,
+                    message: "",
+                    imgSrc: null,
+                }
+            },
+           
+            methods: {
+                onRegistration() {
+                    if (this.loginInput === CORRECT_LOGIN && this.passwordInput === CORRECT_PASS) {
+                        this.colorStatus = "success"
+                        this.message = "Welcome!"
+                        this.imgSrc = "https://img.freepik.com/premium-vector/smile-icon-smile-logo-vector-design-happy-emoticon-business-funny-design-vector-emoji-happiness_6415-3544.jpg?w=200"
+                    }
+                    else if (this.loginInput === INCORRECT_LOGIN && this.passwordInput !== CORRECT_PASS) {
+                        this.colorStatus = "error-ivan-message"
+                        this.message = "Registration Error :("
+                        this.imgSrc = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYnoGOi0njc86ZyTjn6HjemeNtNB3fB9uBsB8_QG-X-HPxe1GgqTVUv6V-EXID-TOeZZI&usqp=CAU"
+                    }
+                    else {
+                        this.colorStatus = "error-message"
+                        this.message = "Registration Error :("
+                        this.imgSrc = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYnoGOi0njc86ZyTjn6HjemeNtNB3fB9uBsB8_QG-X-HPxe1GgqTVUv6V-EXID-TOeZZI&usqp=CAU"
+                    }
+                },
+                onFocus() {
+                    this.message = null
+                    this.imgSrc = null
+                },
+            }
+
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

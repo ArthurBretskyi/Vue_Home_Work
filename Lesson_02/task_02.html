@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../solutions.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Task02</title>
+</head>
+
+<body>
+   <div id="app">
+    <div class="container">
+        <form>
+            <label for="ticketClass">Оберіть клас квитка: </label>
+
+            <select v-model="ticketClass" @change="selectClass" id="ticketClass">
+                <option value="business">Бізнес клас</option>
+                <option value="economy">Економ клас</option>
+            </select>
+
+            <div :class="imgStatus">
+
+                <div v-if="ticketClass">
+                    <label for="previousBlock">{{ previousBlock.label }}</label>
+                    <select v-model="previous" id="previousBlock">
+                        <option v-for="item in previousBlock.items" :value="item.value" :selected="null">{{ item.text }}
+                        </option>
+                    </select>
+                </div>
+
+                <div v-if="ticketClass">
+                    <label for="secondaryBlock">{{ secondaryBlock.label }}</label>
+                    <select v-model="secondary" id="secondaryBlock">
+                        <option v-for="item in secondaryBlock.items" :value="item.value">{{ item.text }}</option>
+                    </select>
+                </div>
+
+                <div v-if="ticketClass && previousBlock.label==='Коньяк' && previous">
+                    <label for="snacks">{{ secondaryBlock.label }}</label>
+                    <select v-model="snacks" id="snacks">
+                        <option value="yes">Так</option>
+                        <option value="no">Ні</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+<style>
+    .business {
+        width: 600px;
+        height: 400px;
+        background-image: url("https://media.istockphoto.com/id/477807400/photo/aircraft-seats-and-windows.jpg?s=612x612&w=0&k=20&c=pFCXnClz3h00qQEypGguC4cjOz96Rrrcp0WiWpaJons=");
+    }
+
+    .economy {
+        width: 600px;
+        height: 400px;
+        background-image: url("https://images.unsplash.com/photo-1601370552761-d129028bd833?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80");
+    }
+</style>
+<script>
+    const { createApp } = Vue
+    createApp({
+        data() {
+            return {
+                ticketClass: null,
+                imgStatus: null,
+                previous: null,
+                secondary: null,
+                snacks: null,
+                previousBlock: {
+                    label: "",
+                    items: []
+                },
+                secondaryBlock: {
+                    label: "",
+                    items: []
+                },
+                chips: {
+                    label: "Чіпси",
+                    items: [
+                        { value: 'lays', text: 'lays' },
+                        { value: 'pringles', text: 'pringles' }
+                    ]
+                },
+                beer: {
+                    label: "Пиво",
+                    items: [
+                        { value: 'super', text: 'super' },
+                        { value: 'good', text: 'good' }
+                    ]
+                },
+                magazine: {
+                    label: "Газети",
+                    items: [
+                        { value: 'times', text: 'times' },
+                        { value: 'bild', text: 'bild' }
+                    ]
+                },
+                cognac: {
+                    label: "Коньяк",
+                    items: [
+                        { value: 'hennesy', text: 'hennesy' },
+                        { value: 'zakarpatsky', text: 'закарпатський' }
+                    ]
+                }
+            }
+        },
+        computed: {
+            isBusinessClass() {
+                if (this.ticketClass === "business")
+                    return this.imgStatus = "business"
+            },
+            isEconomyClass() {
+                if (this.ticketClass === "economy")
+                    return this.imgStatus = "economy"
+            },
+
+        },
+
+        methods: {
+            selectClass() {
+
+                if (this.ticketClass === "business") {
+                    this.previousBlock = this.cognac
+                    this.secondaryBlock = this.magazine
+                    this.imgStatus = "business"
+                } else if (this.ticketClass === "economy") {
+                    this.previousBlock = this.beer
+                    this.secondaryBlock = this.chips
+                    this.imgStatus = "economy"
+                }
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+
+</html>
